@@ -60,7 +60,7 @@ public class Diary
         {
             if (!File.Exists(filePath))
             {
-                Console.WriteLine("No entries found. The diary is empty.");\
+                Console.WriteLine("No entries found. The diary is empty.");
                 return;
             }
 
