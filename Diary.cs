@@ -2,25 +2,95 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-public class Diary
+public class Diary : IDiary
 {
-    private readonly string filePath;
+    protected readonly string filePath;
 
-    public Diary(string path)
+    // Constructor
+    public Diary(string diaryFilePath = "diary.txt")
     {
-        filePath = path;
+        this.filePath = Path.GetFullPath(diaryFilePath);
+
+        try
+        {
+            string? directoryPath = Path.GetDirectoryName(this.filePath);
+
+            if (!string.IsNullOrEmpty(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
     }
 
-    public void writeEntry(string text)
+    // Helper Method to read all lines in the txt file
+    protected virtual List<string> ReadAllLinesToList()
+    {
+        List<string> entries = new List<string>();
+        if (!File.Exists(this.filePath))
+        {
+            return entries;
+        }
+
+        try
+        {
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                string? line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    entries.Add(line);
+                }
+            }
+        }
+
+        catch (IOException ex)
+        {
+            Console.WriteLine($"Error reading diary file: {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An unexpected error occurred while reading file: {ex.Message}");
+        }
+
+        return entries;
+    }
+
+    // Helper method to be use in updating an entry
+    protected virtual bool WriteLinesToFile(List<string> lines)
     {
         try
         {
-            string entry = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss}: {text}";
+            File.WriteAllLines(filePath, lines);
+            return true;
+        }
+
+        catch (IOException ex)
+        {
+            Console.WriteLine($"Error writing diary file: {ex.Message}");
+            return false;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An unexpected error occurred while writing file: {ex.Message}");
+            return false;
+        }
+    }
+
+    // Implementation of WriteEntry method
+    public virtual void WriteEntry(string text)
+    {
+        try
+        {
             using (StreamWriter writer = new StreamWriter(filePath, true))
             {
-                writer.WriteLine(entry);
+                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                writer.WriteLine($"{timestamp} | {text}");
             }
-            Console.WriteLine("Entry added successfully!");
+            Console.WriteLine("Entry added successfully");
         }
         catch (Exception ex)
         {
@@ -28,67 +98,44 @@ public class Diary
         }
     }
 
-    public void viewAllEntries()
+    // Implementation of getAllEntriesAsList method
+    public virtual List<string> GetAllEntriesAsList()
     {
-        try
-        {
-            if (!File.Exists(filePath))
-            {
-                Console.WriteLine("No entries found. The diary is empty.");
-                return;
-            }
-
-            using (StreamReader reader = new StreamReader(filePath))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    Console.WriteLine(line);
-                }
-            }
-
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error reading entries: {ex.Message}");
-        }
+        return ReadAllLinesToList();
     }
 
-    public void searchByDate(string date)
+    // Implementation of SearchByDate method
+    public virtual List<string> SearchByDate(string date)
     {
-        try
+        List<string> allEntries = ReadAllLinesToList();
+        List<string> foundEntries = new List<string>();
+
+        foreach (string entry in allEntries)
         {
-            if (!File.Exists(filePath))
+            if (entry.Trim().StartsWith(date))
             {
-                Console.WriteLine("No entries found. The diary is empty.");
-                return;
-            }
-
-            bool found = false;
-            using (StreamReader reader = new StreamReader(filePath))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    if (line.StartsWith(date))
-                    {
-                        Console.WriteLine(line);
-                        found = true;
-                    }
-                }
-            }
-
-            if (!found)
-            {
-                Console.WriteLine($"No entries found for date: {date}");
+                foundEntries.Add(entry);
             }
         }
 
-        catch (Exception ex)
+        if (foundEntries.Count == 0)
         {
-            Console.WriteLine($"Error searching the entries: {ex.Message}");
+            Console.WriteLine($"No entries found starting with date: {date}");
         }
 
+        return foundEntries;
     }
 
+    public virtual bool EditEntry(int index, string newText)
+    {
+        // implementation here - Kiarra
+        // use ReadAllLinesToList (Helper method) - To get all enties in the file
+        // use WriteLinesToFile (Helper Method) - Write the updated list back to the file
+    }
+
+    public virtual bool DeleteEntry(int index)
+    {
+        // implementation here - Kiel
+        // use ReadAllLinesToList (Helper method)
+    }
 }
