@@ -10,7 +10,7 @@ public interface IDiary
     // Retrieves all entries currently stored in the diary
     // List of strings, where each string is a complete diary entry
 
-    List<string> SearchByDate();
+    List<string> SearchByDate(string date);
     // Searches for diary entries that match a specific date
     // param date = The date to search for (format: YYYY-MM-DD).
 
