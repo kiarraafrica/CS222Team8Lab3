@@ -8,23 +8,17 @@ namespace DigitalDiary
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("=====================================");
-            Console.WriteLine("   Welcome to Your Digital Diary!   ");
-            Console.WriteLine("=====================================");
-            Console.WriteLine();
+            Console.WriteLine("Welcome to Your Digital Diary!\n");
 
             IDiary myDiary = null;
 
-            // Diary Type Selection Loop
+            // Diary Type Selection
             while (myDiary == null)
             {
-                Console.WriteLine("=====================================");
-                Console.WriteLine("        Select Diary Type           ");
-                Console.WriteLine("=====================================");
+                Console.WriteLine("Select Diary Type:");
                 Console.WriteLine("1. Normal Diary");
                 Console.WriteLine("2. Secure Diary");
-                Console.WriteLine("=====================================");
-                Console.Write("Enter choice (1 or 2): ");
+                Console.Write("Choice (1 or 2): ");
                 string? typeChoice = Console.ReadLine();
 
                 if (typeChoice == "1")
@@ -42,15 +36,13 @@ namespace DigitalDiary
                     catch (Exception ex)
                     {
                         Console.WriteLine($"\nError: {ex.Message}");
-                        Console.WriteLine("Returning to selection...");
-                        Console.WriteLine("Press any key to try again...");
+                        Console.WriteLine("Please try again...");
                         Console.ReadKey();
                     }
                 }
                 else
                 {
-                    Console.WriteLine("\nInvalid choice. Please enter 1 or 2.");
-                    Console.WriteLine("Press any key to try again...");
+                    Console.WriteLine("\nInvalid choice. Enter 1 or 2.");
                     Console.ReadKey();
                 }
             }
@@ -61,25 +53,20 @@ namespace DigitalDiary
             while (!exit)
             {
                 Console.Clear();
-                Console.WriteLine("=====================================");
-                Console.WriteLine("          Digital Diary Menu         ");
-                Console.WriteLine("=====================================");
-                Console.WriteLine("1. Write New Entry");
-                Console.WriteLine("2. View All Entries");
-                Console.WriteLine("3. Search by Date (YYYY-MM-DD)");
+                Console.WriteLine("Digital Diary Menu");
+                Console.WriteLine("----------------");
+                Console.WriteLine("1. Write Entry");
+                Console.WriteLine("2. View Entries");
+                Console.WriteLine("3. Search by Date");
                 Console.WriteLine("4. Edit Entry");
                 Console.WriteLine("5. Delete Entry");
                 Console.WriteLine("6. Exit");
-                Console.WriteLine("=====================================");
-                Console.WriteLine("Enter 'x' to cancel action");
-                Console.WriteLine("=====================================");
-                Console.Write("Select an option: ");
+                Console.Write("Option (1-6 or x to cancel): ");
                 string? menuInput = Console.ReadLine();
 
                 if (menuInput?.ToLower() == "x")
                 {
-                    Console.WriteLine("\nReturning to menu...");
-                    Console.WriteLine("Press any key to continue...");
+                    Console.WriteLine("\nCancelled.");
                     Console.ReadKey();
                     continue;
                 }
@@ -108,40 +95,39 @@ namespace DigitalDiary
 
                     case "6":
                         exit = true;
-                        Console.WriteLine("\nExiting Digital Diary. Goodbye!");
+                        Console.WriteLine("\nGoodbye!");
                         break;
 
                     default:
-                        Console.WriteLine("\nInvalid option selected. Please try again.");
+                        Console.WriteLine("\nInvalid option.");
                         break;
                 }
 
                 if (!exit)
                 {
-                    Console.WriteLine("\nPress any key to continue...");
+                    Console.WriteLine("\nPress any key...");
                     Console.ReadKey();
                 }
             }
         }
 
-        // Method for Writing New Entry
+        // Write New Entry
         static void WriteNewEntry(IDiary myDiary)
         {
             Console.Clear();
-            Console.WriteLine("=====================================");
-            Console.WriteLine("        Write New Entry              ");
-            Console.WriteLine("=====================================");
-            Console.WriteLine("Enter your diary entry (or 'x' to cancel):");
+            Console.WriteLine("Write New Entry");
+            Console.WriteLine("---------------");
+            Console.Write("Entry (or x to cancel):\n");
             string? entryText = Console.ReadLine();
 
             if (entryText?.ToLower() == "x")
             {
-                Console.WriteLine("\nWrite cancelled.");
+                Console.WriteLine("\nCancelled.");
             }
             else if (!string.IsNullOrWhiteSpace(entryText))
             {
                 myDiary.WriteEntry(entryText);
-                Console.WriteLine("\nEntry saved!");
+                Console.WriteLine("\nEntry saved.");
             }
             else
             {
@@ -149,42 +135,39 @@ namespace DigitalDiary
             }
         }
 
-        // Method for Viewing All Entries
+        // View All Entries
         static void ViewAllEntries(IDiary myDiary)
         {
             Console.Clear();
-            Console.WriteLine("=====================================");
-            Console.WriteLine("        View All Entries            ");
-            Console.WriteLine("=====================================");
-            List<string> entriesToView = myDiary.GetAllEntriesAsList();
+            Console.WriteLine("All Entries");
+            Console.WriteLine("-----------");
+            List<string> entries = myDiary.GetAllEntriesAsList();
 
-            if (entriesToView.Count == 0)
+            if (entries.Count == 0)
             {
-                Console.WriteLine("\nNo entries to display.");
+                Console.WriteLine("\nNo entries.");
             }
             else
             {
-                for (int i = 0; i < entriesToView.Count; i++)
+                for (int i = 0; i < entries.Count; i++)
                 {
-                    Console.WriteLine($"{i + 1}. {entriesToView[i]}");
+                    Console.WriteLine($"{i + 1}. {entries[i]}");
                 }
             }
-            Console.WriteLine("\n=====================================");
         }
 
-        // Method for Searching Entries by Date
+        // Search Entries by Date
         static void SearchByDate(IDiary myDiary)
         {
             Console.Clear();
-            Console.WriteLine("=====================================");
-            Console.WriteLine("       Search Entries by Date       ");
-            Console.WriteLine("=====================================");
-            Console.Write("Enter date (YYYY-MM-DD) (or 'x' to cancel): ");
+            Console.WriteLine("Search by Date");
+            Console.WriteLine("--------------");
+            Console.Write("Date (YYYY-MM-DD or x to cancel): ");
             string? searchDateInput = Console.ReadLine();
 
             if (searchDateInput?.ToLower() == "x")
             {
-                Console.WriteLine("\nSearch cancelled.");
+                Console.WriteLine("\nCancelled.");
             }
             else if (!string.IsNullOrWhiteSpace(searchDateInput))
             {
@@ -192,65 +175,63 @@ namespace DigitalDiary
 
                 if (results.Count > 0)
                 {
-                    Console.WriteLine("\n--- Search Results ---");
-                    foreach (string foundEntry in results)
+                    Console.WriteLine("\nResults:");
+                    foreach (string entry in results)
                     {
-                        Console.WriteLine(foundEntry);
+                        Console.WriteLine(entry);
                     }
-                    Console.WriteLine("\n--- End of Results ---");
                 }
                 else
                 {
-                    Console.WriteLine("\nNo entries found for the specified date.");
+                    Console.WriteLine("\nNo entries found.");
                 }
             }
             else
             {
-                Console.WriteLine("\nSearch date cannot be empty.");
+                Console.WriteLine("\nDate cannot be empty.");
             }
         }
 
-        // Method for Editing an Entry
+        // Edit an Entry
         static void EditEntry(IDiary myDiary)
         {
             Console.Clear();
-            Console.WriteLine("=====================================");
-            Console.WriteLine("           Edit Entry               ");
-            Console.WriteLine("=====================================");
-            List<string> entriesToEdit = myDiary.GetAllEntriesAsList();
+            Console.WriteLine("Edit Entry");
+            Console.WriteLine("----------");
+            List<string> entries = myDiary.GetAllEntriesAsList();
 
-            if (entriesToEdit.Count == 0)
+            if (entries.Count == 0)
             {
-                Console.WriteLine("\nNo entries to edit.");
+                Console.WriteLine("\nNo entries.");
                 return;
             }
 
-            Console.WriteLine("Entries available to edit:");
-            for (int i = 0; i < entriesToEdit.Count; i++)
+            Console.WriteLine("Entries:");
+            for (int i = 0; i < entries.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {entriesToEdit[i]}");
+                Console.WriteLine($"{i + 1}. {entries[i]}");
             }
 
-            Console.Write("Enter number of entry to edit (or 'x' to cancel): ");
+            Console.Write("\nEntry number (or x to cancel): ");
             string? editNumInput = Console.ReadLine();
 
             if (editNumInput?.ToLower() == "x")
             {
-                Console.WriteLine("\nEdit cancelled.");
+                Console.WriteLine("\nCancelled.");
                 return;
             }
 
             int editNumber;
-            if (int.TryParse(editNumInput, out editNumber) && editNumber >= 1 && editNumber <= entriesToEdit.Count)
+            if (int.TryParse(editNumInput, out editNumber) && editNumber >= 1 && editNumber <= entries.Count)
             {
                 int editIndex = editNumber - 1;
-                Console.WriteLine($"\nCurrent text: {entriesToEdit[editIndex]}");
-                Console.Write("Enter new text (or 'x' to cancel): ");
+                Console.WriteLine($"\nCurrent: {entries[editIndex]}");
+                Console.Write("New text (or x to cancel): ");
                 string? newText = Console.ReadLine();
 
                 if (newText?.ToLower() == "x")
                 {
-                    Console.WriteLine("\nEdit cancelled.");
+                    Console.WriteLine("\nCancelled.");
                 }
                 else
                 {
@@ -260,51 +241,50 @@ namespace DigitalDiary
             }
             else
             {
-                Console.WriteLine("\nInvalid entry number.");
+                Console.WriteLine("\nInvalid number.");
             }
         }
 
-        // Method for Deleting an Entry
+        // Delete an Entry
         static void DeleteEntry(IDiary myDiary)
         {
             Console.Clear();
-            Console.WriteLine("=====================================");
-            Console.WriteLine("         Delete Entry               ");
-            Console.WriteLine("=====================================");
-            List<string> entriesToDelete = myDiary.GetAllEntriesAsList();
+            Console.WriteLine("Delete Entry");
+            Console.WriteLine("------------");
+            List<string> entries = myDiary.GetAllEntriesAsList();
 
-            if (entriesToDelete.Count == 0)
+            if (entries.Count == 0)
             {
-                Console.WriteLine("\nNo entries to delete.");
+                Console.WriteLine("\nNo entries.");
                 return;
             }
 
-            Console.WriteLine("Entries available to delete:");
-            for (int i = 0; i < entriesToDelete.Count; i++)
+            Console.WriteLine("Entries:");
+            for (int i = 0; i < entries.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {entriesToDelete[i]}");
+                Console.WriteLine($"{i + 1}. {entries[i]}");
             }
 
-            Console.Write("Enter number of entry to delete (or 'x' to cancel): ");
+            Console.Write("\nEntry number (or x to cancel): ");
             string? deleteNumInput = Console.ReadLine();
 
             if (deleteNumInput?.ToLower() == "x")
             {
-                Console.WriteLine("\nDelete cancelled.");
+                Console.WriteLine("\nCancelled.");
                 return;
             }
 
             int deleteNumber;
-            if (int.TryParse(deleteNumInput, out deleteNumber) && deleteNumber >= 1 && deleteNumber <= entriesToDelete.Count)
+            if (int.TryParse(deleteNumInput, out deleteNumber) && deleteNumber >= 1 && deleteNumber <= entries.Count)
             {
                 int deleteIndex = deleteNumber - 1;
-                Console.WriteLine($"\nYou selected to delete: {entriesToDelete[deleteIndex]}");
-                Console.Write("Confirm deletion? (y/n) (or 'x' to cancel): ");
+                Console.WriteLine($"\nDelete: {entries[deleteIndex]}");
+                Console.Write("Confirm? (y/n or x to cancel): ");
                 string? confirmInput = Console.ReadLine();
 
                 if (confirmInput?.ToLower() == "x")
                 {
-                    Console.WriteLine("\nDelete cancelled.");
+                    Console.WriteLine("\nCancelled.");
                 }
                 else if (confirmInput?.ToLower() == "y")
                 {
@@ -313,12 +293,12 @@ namespace DigitalDiary
                 }
                 else
                 {
-                    Console.WriteLine("\nDeletion cancelled.");
+                    Console.WriteLine("\nCancelled.");
                 }
             }
             else
             {
-                Console.WriteLine("\nInvalid entry number.");
+                Console.WriteLine("\nInvalid number.");
             }
         }
     }
