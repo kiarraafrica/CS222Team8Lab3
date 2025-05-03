@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 public class SecureDiary : Diary
 {
     private const string PasswordTag = "Your password: ";
+    private string _password;
 
     public SecureDiary(string secureFilePath = "secure_diary.txt") : base(secureFilePath)
     {
@@ -13,7 +15,34 @@ public class SecureDiary : Diary
         // 2. Check if file exists:
         //    - If exists, prompt for password and verify
         //    - If not, prompt for new password and create file
-        // 3. Pause with "Press any key to continue..."
+        // 3. Pause with "Press any key to continue...
+
+        Console.WriteLine("Welcome to Secure Diary!");
+
+        if (File.Exists(filePath))
+        {
+            Console.Write("Enter password: ");
+            string enteredPassword = Console.ReadLine();
+            _password = ReadPasswordFromFile();
+
+            if (_password != enteredPassword)
+            {
+                Console.WriteLine("Incorrect password. Access denied.");
+                Environment.Exit(0);
+            }
+
+            Console.WriteLine("Access granted.");
+        }
+        else
+        {
+            Console.Write("Set a new password: ");
+            _password = Console.ReadLine();
+            WriteLinesToFile(new List<string>());
+            Console.WriteLine("Secure diary created.");
+        }
+
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
     }
 
     private string ReadPasswordFromFile()
@@ -22,7 +51,27 @@ public class SecureDiary : Diary
         // 1. Check if file exists
         // 2. Read first line and extract password after PasswordTag
         // 3. Handle errors (file not found, invalid password line)
-        throw new NotImplementedException(); // remove if done implementing. Thanks:)
+
+        try
+        {
+            if (!File.Exists(filePath))
+                throw new FileNotFoundException("Diary file not found.");
+
+            string firstLine = File.ReadLines(filePath).FirstOrDefault();
+
+            if (firstLine != null && firstLine.StartsWith(PasswordTag))
+            {
+                return firstLine.Substring(PasswordTag.Length);
+            }
+
+            throw new InvalidDataException("Password line is missing or corrupted.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error reading password: {ex.Message}");
+            Environment.Exit(1);
+            return null!;
+        }
     }
 
     protected override List<string> ReadAllLinesToList()
@@ -31,7 +80,30 @@ public class SecureDiary : Diary
         // 1. Return empty list if file doesn't exist
         // 2. Skip first line (password)
         // 3. Read remaining lines into a list
-        throw new NotImplementedException(); // remove if done implementing. Thanks:)
+
+        var entries = new List<string>();
+
+        try
+        {
+            if (!File.Exists(filePath))
+                return entries;
+
+            var lines = File.ReadAllLines(filePath);
+
+            if (lines.Length > 1)
+            {
+                for (int i = 1; i < lines.Length; i++)
+                {
+                    entries.Add(lines[i]);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error reading diary entries: {ex.Message}");
+        }
+
+        return entries;
     }
 
     protected override bool WriteLinesToFile(List<string> entries)
@@ -41,6 +113,18 @@ public class SecureDiary : Diary
         // 2. Create list with password line followed by entries
         // 3. Write to file
         // 4. Handle errors
-        throw new NotImplementedException(); // remove if done implementing. Thanks:)
+        try
+        {
+            var allLines = new List<string> { PasswordTag + _password };
+            allLines.AddRange(entries);
+            File.WriteAllLines(filePath, allLines);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error writing to diary file: {ex.Message}");
+            return false;
+        }
     }
-}
+
+  
