@@ -131,8 +131,47 @@ public class Diary : IDiary
         // implementation here - Kiarra
         // use ReadAllLinesToList (Helper method) - To get all enties in the file
         // use WriteLinesToFile (Helper Method) - Write the updated list back to the file
-    }
+        List<string> entries = ReadAllLinesToList();
 
+        if (index < 0 || index >= entries.Count)
+        {
+            Console.WriteLine("Entry does not exist.");
+            return false;
+        }
+
+        if (string.IsNullOrWhiteSpace(newText))
+        {
+            Console.WriteLine("New text cannot be empty.");
+            return false;
+        }
+
+        try
+        {
+            // get the existing entry from the list
+            string existingEntry = entries[index];
+            int separatorIndex = existingEntry.IndexOf(" | ");
+            if (separatorIndex != -1)
+            {
+                string timestamp = existingEntry.Substring(0, separatorIndex + 3);
+                entries[index] = timestamp + newText;
+            }
+            else
+            {
+                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " | ";
+                entries[index] = timestamp + newText;
+            }
+
+            // save the changes back to file
+            return WriteLinesToFile(entries);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error editing entry: {ex.Message}");
+            return false;
+        }
+      
+    }
+ 
     public virtual bool DeleteEntry(int index)
     {
         // implementation here - Kiel
