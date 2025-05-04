@@ -174,7 +174,28 @@ public class Diary : IDiary
  
     public virtual bool DeleteEntry(int index)
     {
-        // implementation here - Kiel
-        // use ReadAllLinesToList (Helper method)
+        List<string> entries = ReadAllLinesToList();
+
+        if (index >= 0 && index < entries.Count)
+        {
+            entries.RemoveAt(index);
+
+            if (WriteLinesToFile(entries))
+            {
+                Console.WriteLine("Entry deleted successfully.");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Failed to write updated entries to the file.");
+                return false;
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid index. Unable to delete.");
+            return false;
+        }
     }
+
 }
