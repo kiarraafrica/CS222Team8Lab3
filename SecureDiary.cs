@@ -17,7 +17,7 @@ public class SecureDiary : Diary
         //    - If not, prompt for new password and create file
         // 3. Pause with "Press any key to continue...
 
-        Console.WriteLine("--- Welcome to Secure Diary! ---");
+        Console.WriteLine("\n--- Welcome to Secure Diary! ---");
 
         if (File.Exists(filePath))
         {
@@ -27,7 +27,7 @@ public class SecureDiary : Diary
 
             if (_password != enteredPassword)
             {
-                throw new UnauthorizedAccessException("\nIncorrect password. Access denied.");
+                throw new UnauthorizedAccessException("Incorrect password. Access denied.");
             }
 
             Console.WriteLine("\nAccess granted. Welcome back!");
@@ -40,8 +40,8 @@ public class SecureDiary : Diary
             Console.WriteLine("\nSecure diary created successfully!");
         }
 
-        Console.WriteLine("\nPress any key to continue...");
-        Console.ReadKey();
+        //Console.WriteLine("\nPress any key to continue...");
+        //Console.ReadKey();
     }
 
     private string ReadPasswordFromFile()
@@ -67,7 +67,7 @@ public class SecureDiary : Diary
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error reading password: {ex.Message}");
+            Console.WriteLine($"\nError reading password: {ex.Message}");
             Environment.Exit(1);
             return null!;
         }
@@ -80,14 +80,14 @@ public class SecureDiary : Diary
         // 2. Skip first line (password)
         // 3. Read remaining lines into a list
 
-        var entries = new List<string>();
+        List<string> entries = new List<string>();
 
         try
         {
             if (!File.Exists(filePath))
                 return entries;
 
-            var lines = File.ReadAllLines(filePath);
+            string[] lines = File.ReadAllLines(filePath);
 
             if (lines.Length > 1)
             {
@@ -99,7 +99,7 @@ public class SecureDiary : Diary
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error reading diary entries: {ex.Message}");
+            Console.WriteLine($"\nError reading diary entries: {ex.Message}");
         }
 
         return entries;
@@ -114,14 +114,15 @@ public class SecureDiary : Diary
         // 4. Handle errors
         try
         {
-            var allLines = new List<string> { PasswordTag + _password };
+            List<string> allLines = new List<string>();
+            allLines.Add(PasswordTag + _password);
             allLines.AddRange(entries);
             File.WriteAllLines(filePath, allLines);
             return true;
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error writing to diary file: {ex.Message}");
+            Console.WriteLine($"\nError writing to diary file: {ex.Message}");
             return false;
         }
     }
