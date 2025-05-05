@@ -126,5 +126,4 @@ public class SecureDiary : Diary
             return false;
         }
     }
-
-  
+}

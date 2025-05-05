@@ -54,7 +54,7 @@ namespace DigitalDiary
             {
                 Console.Clear();
                 Console.WriteLine("Digital Diary Menu");
-                Console.WriteLine("----------------");
+                Console.WriteLine("------------------");
                 Console.WriteLine("1. Write Entry");
                 Console.WriteLine("2. View Entries");
                 Console.WriteLine("3. Search by Date");
@@ -118,6 +118,7 @@ namespace DigitalDiary
             Console.WriteLine("Write New Entry");
             Console.WriteLine("---------------");
             Console.Write("Entry (or x to cancel):\n");
+            Console.WriteLine();
             string? entryText = Console.ReadLine();
 
             if (entryText?.ToLower() == "x")
@@ -127,7 +128,7 @@ namespace DigitalDiary
             else if (!string.IsNullOrWhiteSpace(entryText))
             {
                 myDiary.WriteEntry(entryText);
-                Console.WriteLine("\nEntry saved.");
+                Console.WriteLine("Entry saved.");
             }
             else
             {

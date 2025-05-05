@@ -90,7 +90,7 @@ public class Diary : IDiary
                 string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 writer.WriteLine($"{timestamp} | {text}");
             }
-            Console.WriteLine("Entry added successfully");
+            Console.WriteLine("\nEntry added successfully.");
         }
         catch (Exception ex)
         {
