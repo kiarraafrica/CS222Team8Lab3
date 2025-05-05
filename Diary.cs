@@ -118,11 +118,6 @@ public class Diary : IDiary
             }
         }
 
-        if (foundEntries.Count == 0)
-        {
-            Console.WriteLine($"No entries found starting with date: {date}");
-        }
-
         return foundEntries;
     }
 
