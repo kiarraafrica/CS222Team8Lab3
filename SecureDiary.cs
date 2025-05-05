@@ -17,31 +17,30 @@ public class SecureDiary : Diary
         //    - If not, prompt for new password and create file
         // 3. Pause with "Press any key to continue...
 
-        Console.WriteLine("Welcome to Secure Diary!");
+        Console.WriteLine("--- Welcome to Secure Diary! ---");
 
         if (File.Exists(filePath))
         {
-            Console.Write("Enter password: ");
+            Console.Write("Enter your password to access the diary: ");
             string enteredPassword = Console.ReadLine();
             _password = ReadPasswordFromFile();
 
             if (_password != enteredPassword)
             {
-                Console.WriteLine("Incorrect password. Access denied.");
-                Environment.Exit(0);
+                throw new UnauthorizedAccessException("\nIncorrect password. Access denied.");
             }
 
-            Console.WriteLine("Access granted.");
+            Console.WriteLine("\nAccess granted. Welcome back!");
         }
         else
         {
-            Console.Write("Set a new password: ");
+            Console.Write("Set a new password to create your diary: ");
             _password = Console.ReadLine();
             WriteLinesToFile(new List<string>());
-            Console.WriteLine("Secure diary created.");
+            Console.WriteLine("\nSecure diary created successfully!");
         }
 
-        Console.WriteLine("Press any key to continue...");
+        Console.WriteLine("\nPress any key to continue...");
         Console.ReadKey();
     }
 
