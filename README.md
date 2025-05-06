@@ -39,5 +39,11 @@ This diary application leverages the core principles of Object-Oriented Programm
 ## 🖥 Sample Output
 
 ## 🧑‍💻 Team Members
+| Name  | E-mail             |
+|------------|-------------------------|
+| Africa, Kiarra Francesca Gabrielle S. | 23-01292@g.bastate-u.edu.ph |
+| Aguzar, Joel Lazernie A. | 23-00562@g.batstate-u.edu.ph |
+| Garcia, Kriztel C.| 23-03726@g.batstate-u.edu.ph |
+| Lacerna, James Louie | 23-05991@g.batstate-u.edu.ph |
 
 ## 🤝 Acknowledgement
