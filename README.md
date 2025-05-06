@@ -33,11 +33,11 @@ This diary application leverages the core principles of Object-Oriented Programm
 	- the ability to reference both Diary and SecureDiary using the IDiary interface, enabling flexible nd interchangeable diary usage.
 
 ## 🧑‍🏫 Instruction on Running the App
-1. Choose Diary Type
+1. 📝 Choose Diary Type
 	- Press 1 for Normal Diary
 	- Press 2 for Secured Diary
 	- Press 3 to Exit
-2. Main Menu
+2. 🏠 Main Menu
 	- Press 1 to Write a New Entry
 	- Press 2 to View All Entries
 	- Press 3 to Search Entries by Date
