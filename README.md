@@ -16,6 +16,7 @@ A *Digital Diary* that allows users to maintain personal diary entries. This off
 
 ## 🧠 How OOP Principles are Used
 This diary application leverages the core principles of Object-Oriented Programming (OOP): Encapsulation, Abstraction, Inheritance, and Polymorphism— to build a clean, extensible, and maintainable codebase.
+
 	1. 🔐**Encapsulation**
 		- is achieved by grouping related data and methods inside classes like Diary and SecureDiary. Internal file operations (ReadAllLinesToList, WriteLinesToFile) are hidden from external acces and exposed through public methods such as WriteEntry, EditEntry, and DeleteEntry.
 		- the password in SecureDiary is stored in a private field (_password) and accessed internallu, ensuring it's not exposed to outside classes.
@@ -32,11 +33,6 @@ This diary application leverages the core principles of Object-Oriented Programm
 		- the ability to reference both Diary and SecureDiary using the IDiary interface, enabling flexible nd interchangeable diary usage.
 
 ## 🧑‍🏫 Instruction on Running the App
-1. Choose Diary Mode
-	- Press 1 for Normal Diary
-	- Press 2 for Secured Diary
-2. Main Menu
-	- Choose from option 1-6
 
 ## 📂 File Structure
 
