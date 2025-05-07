@@ -36,7 +36,7 @@ This diary application leverages the core principles of Object-Oriented Programm
 1. 📝 Choose Diary Type
 	- Press 1 for Normal Diary
 	- Press 2 for Secured Diary
-	- Press 3 to Exit
+	- Press 3 to Close Application
 2. 🏠 Main Menu
 	- Press 1 to Write a New Entry
 	- Press 2 to View All Entries
@@ -45,9 +45,24 @@ This diary application leverages the core principles of Object-Oriented Programm
 	- Press 5 to Delete an Entry
 	- Press 6 to Exit
 
+Just follow the on-screen prompt to use the app.
+
 ## 📂 File Structure
+![File Structure](sample output/file-structure.png)
 
 ## 🖥 Sample Output
+- Start
+![Start](sample output/start.png)
+- Main Menu
+![Main Menu](sample output/main-menu.png)
+- Write
+![Write](sample output/write.png)
+- Search
+![Search](sample output/search.png)
+- Edit
+![Edit](sample output/edit.png)
+- Delete
+![Delete](sample output/delete.png)
 
 ## 🧑‍💻 Team Members
 | Name  | E-mail             |
