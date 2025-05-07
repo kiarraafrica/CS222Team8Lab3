@@ -90,5 +90,6 @@ We, the members of **GROUP 8**, would like to sincerely thank **Ms. Fatima Marie
 We would also like to acknowledge and commend *Joel Lazernie A. Aguzar* for his outstanding contribution and dedication, which played a significant role in the success of this project.
 
 Special thanks to our group leader, *Kiarra Francesca Gabrielle S. Africa*, for her excellent leadership, organization, and constant motivation that kept the team on track.
----
+
 Lastly, we are grateful to our families and friends for their continued support and understanding as we worked on this project.
+---
