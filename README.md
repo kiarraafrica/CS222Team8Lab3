@@ -48,21 +48,21 @@ This diary application leverages the core principles of Object-Oriented Programm
 Just follow the on-screen prompt to use the app.
 
 ## 📂 File Structure
-![File Structure](sample output/file-structure.png)
+![File Structure](sample_output/file-structure.png)
 
 ## 🖥 Sample Output
 - Start
-![Start](sample output/start.png)
+![Start](sample_output/start.png)
 - Main Menu
-![Main Menu](sample output/main-menu.png)
+![Main Menu](sample_output/main-menu.png)
 - Write
-![Write](sample output/write.png)
+![Write](sample_output/write.png)
 - Search
-![Search](sample output/search.png)
+![Search](sample_output/search.png)
 - Edit
-![Edit](sample output/edit.png)
+![Edit](sample_output/edit.png)
 - Delete
-![Delete](sample output/delete.png)
+![Delete](sample_output/delete.png)
 
 ## 🧑‍💻 Team Members
 | Name  | E-mail             |
