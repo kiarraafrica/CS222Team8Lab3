@@ -51,18 +51,23 @@ Just follow the on-screen prompt to use the app.
 ![File Structure](sample_output/file-structure.png)
 
 ## 🖥 Sample Output
-**Start**
-- ![Start](sample_output/start.png)
-**Main Menu**
-- ![Main Menu](sample_output/main-menu.png)
-**Write**
-- ![Write](sample_output/write.png)
-**Search**
-- ![Search](sample_output/search.png)
-**Edit**
-- ![Edit](sample_output/edit.png)
-**Delete**
-- ![Delete](sample_output/delete.png)
+**Start**														
+![Start](sample_output/start.png)
+
+**Main Menu**														
+![Main Menu](sample_output/main-menu.png)
+
+**Write**											
+![Write](sample_output/write.png)
+
+**Search**														
+![Search](sample_output/search.png)
+
+**Edit**																										
+![Edit](sample_output/edit.png)
+
+**Delete**														
+![Delete](sample_output/delete.png)
 
 ## 🧑‍💻 Team Members
 | Name  | E-mail             |
