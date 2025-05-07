@@ -33,6 +33,43 @@ This diary application leverages the core principles of Object-Oriented Programm
 	- the ability to reference both Diary and SecureDiary using the IDiary interface, enabling flexible nd interchangeable diary usage.
 
 ## 🧑‍🏫 Instruction on Running the App
+Follow these steps to run the **DigitalDiary** application smoothly on your local machine:
+
+### 🧰 Prerequisites
+
+Before you start, make sure you have:
+
+- ✅ [.NET SDK (6.0 or later)](https://dotnet.microsoft.com/download)
+- ✅ A code editor (we recommend [Visual Studio](https://visualstudio.microsoft.com/) or [VS Code](https://code.visualstudio.com/))
+- ✅ Git installed
+
+### 🛠️ Set-up Steps
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/your-username/DigitalDiary.git
+   cd DigitalDiary
+
+2. **Open the Project**
+   #### Option 1: Using Visual Studio
+	Open the .sln file:
+
+	```bash
+ 	File > Open > Project/Solution > DigitalDiary.sln
+ 	```
+   #### Option 2: Using CLI or VS Code
+   	```bash
+   	code .
+	```
+3. **Run the App**
+   #### Use the .NET CLI:
+   	```bash
+ 	dotnet run
+ 	```
+    Or press F5 in Visual Studio to run the app with debugging.
+
+### ✅ How to Use
 1. 📝 Choose Diary Type
 	- Press 1 for Normal Diary
 	- Press 2 for Secured Diary
@@ -86,10 +123,4 @@ Just follow the on-screen prompt to use the app.
 ## 🤝 Acknowledgement
 
 We, the members of **GROUP 8**, would like to sincerely thank **Ms. Fatima Marie P. Agdon**, our Advanced Object-Oriented Programming instructor, for her guidance, support, and encouragement throughout this project. Her insights and clear explanations helped us greatly in applying advanced programming concepts effectively.
-
-We would also like to acknowledge and commend *Joel Lazernie A. Aguzar* for his outstanding contribution and dedication, which played a significant role in the success of this project.
-
-Special thanks to our group leader, *Kiarra Francesca Gabrielle S. Africa*, for her excellent leadership, organization, and constant motivation that kept the team on track.
-
-Lastly, we are grateful to our families and friends for their continued support and understanding as we worked on this project.
 
