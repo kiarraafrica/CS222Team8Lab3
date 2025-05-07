@@ -85,10 +85,10 @@ Just follow the on-screen prompt to use the app.
 
 ## 🤝 Acknowledgement
 
-We, the members of *GROUP 8*, would like to sincerely thank *Ms. Fatima Marie P. Agdon*, our Advanced Object-Oriented Programming instructor, for her guidance, support, and encouragement throughout this project. Her insights and clear explanations helped us greatly in applying advanced programming concepts effectively.
-
+We, the members of **GROUP 8**, would like to sincerely thank **Ms. Fatima Marie P. Agdon**, our Advanced Object-Oriented Programming instructor, for her guidance, support, and encouragement throughout this project. Her insights and clear explanations helped us greatly in applying advanced programming concepts effectively.
+---
 We would also like to acknowledge and commend *Joel Lazernie A. Aguzar* for his outstanding contribution and dedication, which played a significant role in the success of this project.
 
 Special thanks to our group leader, *Kiarra Francesca Gabrielle S. Africa*, for her excellent leadership, organization, and constant motivation that kept the team on track.
-
+---
 Lastly, we are grateful to our families and friends for their continued support and understanding as we worked on this project.
